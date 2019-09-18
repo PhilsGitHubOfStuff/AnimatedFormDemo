@@ -1,0 +1,48 @@
+<div class="content" style="padding: 10px;background-color: #cdd2d6;">
+		<div class="container-fluid" style="color: rgb(255,255,255);">
+		
+			<div class="card-body" >
+			<form id="msform">
+            <ul id="progressbar" >
+                <li class="{{fState}}">Sign Up</li>
+                <li class="{{sState}}">Selection</li>
+                <li class="{{tState}}">Confirm</li>
+            </ul>
+            <fieldset *ngIf="first" [@slideInOut]>
+                <h2 class="fs-title">Basic Profile</h2>
+                <h3 class="fs-subtitle">This is step 1</h3>
+				<input type="text" name="name" placeholder="Name" [(ngModel)]="fullName" />
+				<input type="text" name="descr" placeholder="Description" [(ngModel)]="descr" />
+				<input type="button" name="next" class="next action-button" value="Next" (click)="next()" />
+			</fieldset>
+				
+            <fieldset *ngIf="second" [@slideInOut]>
+                <h2 class="fs-title">Choose Options</h2>
+                <h3 class="fs-subtitle">Select the best show</h3>
+				<select (change)="selectChangeHandler($event)">
+					<option *ngFor="let t of tvshows">
+						{{t}}
+					</option>
+				</select>
+				<br/>
+				<input type="button" name="previous" class="previous action-button" value="Previous" (click)="next()"/>
+				<input type="button" name="next" class="next action-button"
+                    value="Next" (click)="next2()"/>
+			</fieldset>
+            <fieldset *ngIf="third" [@slideInOut]>
+                <h2 class="fs-title">Confirmation</h2>
+                <h3 class="fs-subtitle">Review</h3><br />
+                <h3 class="fs-subtitle">Name: {{fullName}}</h3>
+				<h3 class="fs-subtitle">Description: {{descr}}</h3>
+				<h3 class="fs-subtitle">Show: {{selectedShow}}</h3>
+				<input type="button" name="previous" class="previous action-button" value="Previous" (click)="next2()" />
+				<input type="submit" name="submit" class="submit action-button" value="Submit" (click)="finish()"/>
+			</fieldset>
+			<fieldset *ngIf="fourth" [@slideInOut]>
+                <h2 class="fs-title">Thank You!</h2>
+			</fieldset>
+			</form>
+    </div>
+			
+</div>
+</div>
